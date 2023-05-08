@@ -1,11 +1,10 @@
 import Footer from "./components/Footer";
-import Form from "./components/Form";
+import UserForm from "./components/UserForm";
 
 const App = () => {
   return (
     <div>
-      <div style={{ textAlign: "center" }}>hello,it is a Report Web</div>
-      <Form></Form>
+      <UserForm></UserForm>
       <Footer />
     </div>
   );
