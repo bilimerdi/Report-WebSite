@@ -20,25 +20,37 @@ const UserForm = () => {
       sx={{
         height: 300,
         width: 320,
-        textAlign: "center",
+        textAlign: "left",
         display: "flex",
         flexDirection: "column",
         margin: "auto",
         marginTop: 30,
       }}
     >
-      <TextField label="Full Name" variant="outlined"></TextField>
-      <TextField label="Username" variant="outlined"></TextField>
-      <TextField label="Email Adress" variant="outlined"></TextField>
-      <div>Role</div>
-      <Select label="Role" placeholder="Role">
+      <TextField
+        label="Full Name"
+        variant="outlined"
+        sx={{ marginBottom: 2 }}
+      ></TextField>
+      <TextField
+        label="Username"
+        variant="outlined"
+        sx={{ marginBottom: 2 }}
+      ></TextField>
+      <TextField
+        label="Email Adress"
+        variant="outlined"
+        sx={{ marginBottom: 2 }}
+      ></TextField>
+      <div style={{ marginBottom: 10 }}>Role</div>
+      <Select label="Role" placeholder="Role" sx={{ marginBottom: 2 }}>
         <MenuItem value={1}>Contributor</MenuItem>
         <MenuItem value={2}>Subscriber</MenuItem>
         <MenuItem value={3}>Author</MenuItem>
         <MenuItem value={4}>Administrator</MenuItem>
       </Select>
-      <div>Select Avatar</div>
-      <Stack direction="row" spacing={2}>
+      <div style={{ marginBottom: 10 }}>Select Avatar</div>
+      <Stack direction="row" spacing={2} sx={{ marginBottom: 2 }}>
         <Avatar variant="rounded" src={man1} />
         <Avatar variant="rounded" src={man2} />
         <Avatar variant="rounded" src={man3} />
@@ -46,7 +58,9 @@ const UserForm = () => {
         <Avatar variant="rounded" src={woman1} />
         <Avatar variant="rounded" src={woman2} />
       </Stack>
-      <Button variant="contained">Create User</Button>
+      <Button variant="contained" sx={{ marginBottom: 2 }}>
+        Create User
+      </Button>
     </Stack>
   );
 };
