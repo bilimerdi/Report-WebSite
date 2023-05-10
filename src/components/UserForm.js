@@ -4,7 +4,7 @@ import { Button, TextField, Select, MenuItem, InputLabel } from "@mui/material";
 
 const UserForm = () => {
   return (
-    <div className="form">
+    <div>
       <div className="form-border">
         <TextField
           className="input"
@@ -22,7 +22,7 @@ const UserForm = () => {
           variant="outlined"
         ></TextField>
         <InputLabel>Role</InputLabel>
-        <Select label="Role" placeholder="Role" sx={{ width: 150, heiht: 20 }}>
+        <Select label="Role" placeholder="Role">
           <MenuItem>Contributor</MenuItem>
           <MenuItem>Subscriber</MenuItem>
           <MenuItem>Author</MenuItem>
