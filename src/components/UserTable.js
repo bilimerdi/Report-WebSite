@@ -27,7 +27,7 @@ const userTableStyles = {
   height: "450px",
 };
 
-const UserTable = ({ onError }) => {
+const UserTable = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
