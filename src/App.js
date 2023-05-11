@@ -1,9 +1,9 @@
-import RoleTabs from "./components/RoleTabs";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
     <div>
-      <RoleTabs></RoleTabs>
+      <NavBar></NavBar>
     </div>
   );
 };
