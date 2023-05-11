@@ -1,9 +1,9 @@
-import UserTable from "./components/UserTable";
+import MainScreen from "./screens/MainScreen";
 
 const App = () => {
   return (
     <div>
-      <UserTable></UserTable>
+      <MainScreen></MainScreen>
     </div>
   );
 };
