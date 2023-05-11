@@ -1,9 +1,9 @@
-import UserForm from "./components/UserForm";
+import UserTable from "./components/UserTable";
 
 const App = () => {
   return (
     <div>
-      <UserForm></UserForm>
+      <UserTable></UserTable>
     </div>
   );
 };
