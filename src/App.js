@@ -1,9 +1,9 @@
-import MainScreen from "./screens/MainScreen";
+import RoleTabs from "./components/RoleTabs";
 
 const App = () => {
   return (
     <div>
-      <MainScreen></MainScreen>
+      <RoleTabs></RoleTabs>
     </div>
   );
 };
