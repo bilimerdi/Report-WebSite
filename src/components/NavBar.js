@@ -1,6 +1,14 @@
 import React from "react";
 import Icon1 from "../assets/icon2.jpg";
-import { Stack, Toolbar, AppBar, Button, Avatar, Box } from "@mui/material";
+import {
+  Stack,
+  Toolbar,
+  AppBar,
+  Button,
+  Avatar,
+  Box,
+  Typography,
+} from "@mui/material";
 import RoleTabs from "./RoleTabs";
 
 const NavBar = () => {
@@ -11,9 +19,12 @@ const NavBar = () => {
           <Button>
             <Avatar variant="rounded" src={Icon1}></Avatar>
           </Button>
-          <div style={{ color: "black", paddingRight: "300px" }}>
-            <b>Users</b>
-          </div>
+          <Typography
+            variant="caption"
+            sx={{ color: "black", fontWeight: "bold" }}
+          >
+            Users
+          </Typography>
           <RoleTabs></RoleTabs>
         </Toolbar>
       </AppBar>
