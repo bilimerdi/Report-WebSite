@@ -25,16 +25,19 @@ const UserForm = () => {
         label="Full Name"
         variant="outlined"
         sx={{ marginBottom: 2 }}
+        color="secondary"
       ></TextField>
       <TextField
         label="Username"
         variant="outlined"
         sx={{ marginBottom: 2 }}
+        color="secondary"
       ></TextField>
       <TextField
         label="Email Adress"
         variant="outlined"
         sx={{ marginBottom: 2 }}
+        color="secondary"
       ></TextField>
       <div style={{ marginBottom: 10 }}>Role</div>
       <Select label="Role" placeholder="Role" sx={{ marginBottom: 2 }}>
