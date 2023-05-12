@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, TextField, Select, MenuItem, Stack } from "@mui/material";
 import AvatarCreate from "./AvatarCreate";
+import { Link } from "react-router-dom";
 
 const UserForm = () => {
   return (
@@ -43,7 +44,12 @@ const UserForm = () => {
         <MenuItem value={4}>Administrator</MenuItem>
       </Select>
       <AvatarCreate></AvatarCreate>
-      <Button variant="contained" sx={{ marginBottom: 2 }}>
+      <Button
+        variant="contained"
+        component={Link}
+        to={"/NavBar"}
+        sx={{ marginBottom: 2 }}
+      >
         Create User
       </Button>
     </Stack>
