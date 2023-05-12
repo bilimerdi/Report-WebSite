@@ -1,6 +1,5 @@
 import { useState, React } from "react";
 import Icon1 from "../assets/icon2.jpg";
-import UserForm from "./UserForm";
 import {
   Toolbar,
   AppBar,
@@ -9,7 +8,7 @@ import {
   Box,
   Typography,
   Tab,
-  Icon,
+  SvgIcon,
 } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -53,7 +52,8 @@ const NavBar = () => {
               </TabList>
             </Box>
           </TabContext>
-          <Button component={Link} to={"/UserForm"}>
+          <Button variant="contained" component={Link} to={"/UserForm"}>
+            <SvgIcon component={AddCircleIcon}></SvgIcon>
             Add New User
           </Button>
         </Toolbar>
