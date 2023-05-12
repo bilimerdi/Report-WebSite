@@ -41,12 +41,11 @@ const NavBar = () => {
                 indicatorColor="secondary"
                 cendered
               >
-                <Tab label="Tab One" value="1" />
-                <Tab label="Tab Two" value="2" />
-                <Tab label="Tab Three" value="3" />
-                <Tab label="Tab Four" value="4" />
-                <Tab label="Tab Five" value="5" />
-                <Tab label="Tab Six" value="6" />
+                <Tab label="All Users" value="1" />
+                <Tab label="Contributor" value="2" />
+                <Tab label="Author" value="3" />
+                <Tab label="Adminstrator" value="4" />
+                <Tab label="Subscriber" value="5" />{" "}
               </TabList>
             </Box>
           </TabContext>
@@ -60,7 +59,6 @@ const NavBar = () => {
         <TabPanel value="3">Item Three</TabPanel>
         <TabPanel value="4">Item Four</TabPanel>
         <TabPanel value="5">Item Five</TabPanel>
-        <TabPanel value="6">Item Six</TabPanel>
       </TabContext>
     </Box>
   );
