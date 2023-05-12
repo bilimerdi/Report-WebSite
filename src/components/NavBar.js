@@ -1,5 +1,6 @@
 import { useState, React } from "react";
 import Icon1 from "../assets/icon2.jpg";
+import UserForm from "./UserForm";
 import {
   Toolbar,
   AppBar,
@@ -8,9 +9,12 @@ import {
   Box,
   Typography,
   Tab,
+  Icon,
 } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import UserTable from "./UserTable";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [value, setValue] = useState("1");
@@ -49,6 +53,9 @@ const NavBar = () => {
               </TabList>
             </Box>
           </TabContext>
+          <Button component={Link} to={"/UserForm"}>
+            Add New User
+          </Button>
         </Toolbar>
       </AppBar>
       <TabContext value={value}>
