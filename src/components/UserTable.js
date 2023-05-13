@@ -110,6 +110,7 @@ const UserTable = () => {
         variant="outlined"
         value={searchTerm}
         onChange={handleSearch}
+        fullWidth
       ></TextField>
       <DataTable
         rows={filteredUsers}
