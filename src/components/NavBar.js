@@ -42,7 +42,6 @@ const NavBar = () => {
                 aria-label="Tabs example"
                 textColor="secondary"
                 indicatorColor="secondary"
-                cendered
               >
                 <Tab label="All Users" value="1" />
                 <Tab label="Contributor" value="2" />
