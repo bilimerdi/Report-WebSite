@@ -55,7 +55,7 @@ const UserForm = () => {
           display: "flex",
           flexDirection: "column",
           margin: "auto",
-          marginTop: 20,
+          marginTop: 10,
           border: 1,
           borderColor: "black",
           padding: 5,

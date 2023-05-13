@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "./DataTable";
-import { Avatar, Button, Stack, SvgIcon } from "@mui/material";
+import { Avatar, Button, Stack, SvgIcon, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -10,8 +10,42 @@ const userTableStyles = {
 
 const UserTable = () => {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const editUser = (e, row) => {};
+  const filteredUsers = users.filter(
+    (user) =>
+      user.UserName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.Email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const editUser = (e, row) => {
+    const templa = {
+      Avatar: "1",
+      Name: "adad",
+      UserName: "3",
+      Email: "4",
+      Role: "5",
+    };
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(templa),
+    };
+    fetch(
+      `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then(() => {
+        fetch("https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users")
+          .then((response) => response.json())
+          .then((json) => setUsers(json));
+      });
+  };
 
   const deleteUser = (e, row) => {
     fetch(`https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`, {
@@ -64,16 +98,26 @@ const UserTable = () => {
   useEffect(() => {
     fetch("https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users")
       .then((response) => response.json())
-      .then((json) => setUsers(json));
+      .then((json) => {
+        setUsers(json);
+      });
   }, []);
 
   return (
-    <DataTable
-      rows={users}
-      columns={columns}
-      loading={!users.length}
-      sx={userTableStyles}
-    />
+    <>
+      <TextField
+        label="Search"
+        variant="outlined"
+        value={searchTerm}
+        onChange={handleSearch}
+      ></TextField>
+      <DataTable
+        rows={filteredUsers}
+        columns={columns}
+        loading={!users.length}
+        sx={userTableStyles}
+      />
+    </>
   );
 };
 
