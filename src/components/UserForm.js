@@ -7,12 +7,18 @@ const UserForm = () => {
   const [fullName, setFullName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(fullName, userName, email);
+    console.log(fullName, userName, email, role);
     navigate("/NavBar");
+  };
+
+  const handleRoleChange = (event) => {
+    setRole(event.target.value);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -60,11 +66,17 @@ const UserForm = () => {
           required
         ></TextField>
         <div style={{ marginBottom: 10 }}>Role</div>
-        <Select label="Role" placeholder="Role" sx={{ marginBottom: 2 }}>
-          <MenuItem value={1}>Contributor</MenuItem>
-          <MenuItem value={2}>Subscriber</MenuItem>
-          <MenuItem value={3}>Author</MenuItem>
-          <MenuItem value={4}>Administrator</MenuItem>
+        <Select
+          label="Role"
+          placeholder="Role"
+          value={role}
+          onChange={handleRoleChange}
+          sx={{ marginBottom: 2 }}
+        >
+          <MenuItem value="Contributor">Contributor</MenuItem>
+          <MenuItem value="Subscriber">Subscriber</MenuItem>
+          <MenuItem value="Author">Author</MenuItem>
+          <MenuItem value="Administrator">Administrator</MenuItem>
         </Select>
         <AvatarCreate></AvatarCreate>
         <Button variant="contained" sx={{ marginBottom: 2 }} type="submit">
