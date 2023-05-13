@@ -47,6 +47,32 @@ const UserTable = () => {
       });
   };
 
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  const handleDeleteRows = () => {
+    console.log(selectedRows);
+    const deletePromises = selectedRows.map((row) => {
+      return fetch(
+        `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+    });
+
+    Promise.all(deletePromises)
+      .then(() => {
+        const newUsers = users.filter((user) => !selectedRows.includes(user));
+        setUsers(newUsers);
+        setSelectedRows([]);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleSelectionModelChange = (newSelection) => {
+    setSelectedRows(newSelection);
+  };
+
   const deleteUser = (e, row) => {
     fetch(`https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`, {
       method: "DELETE",
@@ -105,18 +131,30 @@ const UserTable = () => {
 
   return (
     <>
-      <TextField
-        label="Search"
-        variant="outlined"
-        value={searchTerm}
-        onChange={handleSearch}
-        fullWidth
-      ></TextField>
+      <Stack direction="row">
+        <TextField
+          label="Search"
+          variant="outlined"
+          value={searchTerm}
+          onChange={handleSearch}
+          fullWidth
+        ></TextField>
+        <Button onClick={handleDeleteRows}>
+          <SvgIcon
+            sx={{ height: 35, width: 35 }}
+            color="action"
+            component={DeleteIcon}
+          ></SvgIcon>
+        </Button>
+      </Stack>
       <DataTable
         rows={filteredUsers}
         columns={columns}
         loading={!users.length}
         sx={userTableStyles}
+        checkboxSelection
+        onRowSelectionModelChange={handleSelectionModelChange}
+        selectionModel={selectedRows}
       />
     </>
   );
