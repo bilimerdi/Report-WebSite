@@ -96,6 +96,7 @@ const UserForm = () => {
           value={role}
           onChange={handleRoleChange}
           sx={{ marginBottom: 2 }}
+          required
         >
           <MenuItem value="Contributor">Contributor</MenuItem>
           <MenuItem value="Subscriber">Subscriber</MenuItem>
