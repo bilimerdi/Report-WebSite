@@ -3,12 +3,14 @@ import DataTable from "./DataTable";
 import { Avatar, Button, Stack, SvgIcon, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import UserForm from "./UserForm";
+import { Navigate } from "react-router-dom";
 
 const userTableStyles = {
   height: "450px",
 };
 
-const UserTable = () => {
+const UserTable = ({ filterValue }) => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -22,30 +24,7 @@ const UserTable = () => {
     setSearchTerm(event.target.value);
   };
 
-  const editUser = (e, row) => {
-    const templa = {
-      Avatar: "1",
-      Name: "adad",
-      UserName: "3",
-      Email: "4",
-      Role: "5",
-    };
-    const requestOptions = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(templa),
-    };
-    fetch(
-      `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then(() => {
-        fetch("https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users")
-          .then((response) => response.json())
-          .then((json) => setUsers(json));
-      });
-  };
+  const editUser = (e, row) => {};
 
   const [selectedRows, setSelectedRows] = useState([]);
 
@@ -122,12 +101,14 @@ const UserTable = () => {
   ];
 
   useEffect(() => {
-    fetch("https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users")
+    fetch(
+      `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users?Role=${filterValue}`
+    )
       .then((response) => response.json())
       .then((json) => {
         setUsers(json);
       });
-  }, []);
+  }, [filterValue]);
 
   return (
     <>

@@ -46,7 +46,7 @@ const NavBar = () => {
                 <Tab label="All Users" value="1" />
                 <Tab label="Contributor" value="2" />
                 <Tab label="Author" value="3" />
-                <Tab label="Adminstrator" value="4" />
+                <Tab label="Administrator" value="4" />
                 <Tab label="Subscriber" value="5" />{" "}
               </TabList>
             </Box>
@@ -59,12 +59,20 @@ const NavBar = () => {
       </AppBar>
       <TabContext value={value}>
         <TabPanel value="1">
-          <UserTable></UserTable>
+          <UserTable filterValue="*"></UserTable>
         </TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-        <TabPanel value="4">Item Four</TabPanel>
-        <TabPanel value="5">Item Five</TabPanel>
+        <TabPanel value="2">
+          <UserTable filterValue="Contributor"></UserTable>
+        </TabPanel>
+        <TabPanel value="3">
+          <UserTable filterValue="Author"></UserTable>
+        </TabPanel>
+        <TabPanel value="4">
+          <UserTable filterValue="Administrator"></UserTable>
+        </TabPanel>
+        <TabPanel value="5">
+          <UserTable filterValue="Subscriber"></UserTable>
+        </TabPanel>
       </TabContext>
     </Box>
   );
