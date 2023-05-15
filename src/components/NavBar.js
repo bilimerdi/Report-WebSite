@@ -36,13 +36,18 @@ const NavBar = () => {
             Users
           </Typography>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <TabList
-                onChange={handleChange}
-                aria-label="Tabs example"
-                textColor="secondary"
-                indicatorColor="secondary"
-              >
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: "divider",
+                position: "absolute",
+                left: "26.96%",
+                right: "26.96%",
+                top: "2.37%",
+                bottom: "93.34%",
+              }}
+            >
+              <TabList onChange={handleChange} aria-label="Tabs example">
                 <Tab label="All Users" value="1" />
                 <Tab label="Contributor" value="2" />
                 <Tab label="Author" value="3" />
@@ -51,7 +56,22 @@ const NavBar = () => {
               </TabList>
             </Box>
           </TabContext>
-          <Button variant="contained" component={Link} to={"/UserForm"}>
+          <Button
+            variant="contained"
+            component={Link}
+            to={"/UserForm"}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "12px 20px 12px 15px",
+              position: "absolute",
+              left: "80.21%",
+              background: "#2940D3",
+              borderRadius: "4px",
+            }}
+          >
             <SvgIcon component={AddCircleIcon}></SvgIcon>
             Add New User
           </Button>
