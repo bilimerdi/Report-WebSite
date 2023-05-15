@@ -41,8 +41,12 @@ const UserForm = ({ row, boolean }) => {
     fetch(
       `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`,
       requestOptions
-    ).then((response) => response.json());
-    navigate("/NavBar");
+    ).then((response) =>
+      response.json().then(() => {
+        navigate("/");
+        window.location.reload();
+      })
+    );
   };
 
   const handleSubmit = (event) => {
