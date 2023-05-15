@@ -41,7 +41,7 @@ const NavBar = () => {
                 borderBottom: 1,
                 borderColor: "divider",
                 position: "absolute",
-                left: "26.96%",
+                left: "28.96%",
                 right: "26.96%",
                 top: "2.37%",
                 bottom: "93.34%",
@@ -67,7 +67,7 @@ const NavBar = () => {
               alignItems: "center",
               padding: "12px 20px 12px 15px",
               position: "absolute",
-              left: "80.21%",
+              left: "86.21%",
               background: "#2940D3",
               borderRadius: "4px",
             }}

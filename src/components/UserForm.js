@@ -109,7 +109,7 @@ const UserForm = ({ row, boolean }) => {
           required
         ></TextField>
         <TextField
-          label="Email Adress"
+          label="Email Address"
           variant="outlined"
           sx={{ marginBottom: 2 }}
           color="secondary"

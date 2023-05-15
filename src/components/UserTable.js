@@ -86,7 +86,7 @@ const UserTable = ({ filterValue }) => {
     {
       field: "Avatar",
       headerName: "Avatar",
-      width: 150,
+      width: 70,
       renderCell: (params) => {
         return (
           <>
@@ -95,10 +95,10 @@ const UserTable = ({ filterValue }) => {
         );
       },
     },
-    { field: "Name", headerName: "Name", width: 150 },
-    { field: "UserName", headerName: "Username", width: 200 },
-    { field: "Email", headerName: "Email", width: 300 },
-    { field: "Role", headerName: "Role", width: 150 },
+    { field: "Name", headerName: "Name", width: 130 },
+    { field: "UserName", headerName: "Username", width: 150 },
+    { field: "Email", headerName: "Email", width: 250 },
+    { field: "Role", headerName: "Role", width: 130 },
     {
       field: "Edit",
       headerName: "Edit",
