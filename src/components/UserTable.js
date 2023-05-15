@@ -4,7 +4,6 @@ import { Avatar, Button, Stack, SvgIcon, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import UserForm from "./UserForm";
-import { Navigate } from "react-router-dom";
 
 const userTableStyles = {
   height: "450px",
@@ -13,6 +12,8 @@ const userTableStyles = {
 const UserTable = ({ filterValue }) => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [editValue, setEditValue] = useState([]);
+  const [editBool, setEditBool] = useState(false);
 
   const filteredUsers = users.filter(
     (user) =>
@@ -24,12 +25,15 @@ const UserTable = ({ filterValue }) => {
     setSearchTerm(event.target.value);
   };
 
-  const editUser = (e, row) => {};
+  const editUser = (e, row) => {
+    setEditValue(row);
+    setEditBool(true);
+    console.log(editValue);
+  };
 
   const [selectedRows, setSelectedRows] = useState([]);
 
   const handleDeleteRows = () => {
-    console.log(selectedRows);
     const deletePromises = selectedRows.map((row) => {
       return fetch(
         `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`,
@@ -111,33 +115,53 @@ const UserTable = ({ filterValue }) => {
   }, [filterValue]);
 
   return (
-    <>
-      <Stack direction="row">
-        <TextField
-          label="Search"
-          variant="outlined"
-          value={searchTerm}
-          onChange={handleSearch}
-          fullWidth
-        ></TextField>
-        <Button onClick={handleDeleteRows}>
-          <SvgIcon
-            sx={{ height: 35, width: 35 }}
-            color="action"
-            component={DeleteIcon}
-          ></SvgIcon>
-        </Button>
-      </Stack>
-      <DataTable
-        rows={filteredUsers}
-        columns={columns}
-        loading={!users.length}
-        sx={userTableStyles}
-        checkboxSelection
-        onRowSelectionModelChange={handleSelectionModelChange}
-        selectionModel={selectedRows}
-      />
-    </>
+    <div>
+      {editBool ? (
+        <div>
+          <UserForm
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              zIndex: 9999,
+            }}
+            row={editValue}
+            boolean={editBool}
+          ></UserForm>
+        </div>
+      ) : (
+        <React.Fragment>
+          <Stack direction="row">
+            <TextField
+              label="Search"
+              variant="outlined"
+              value={searchTerm}
+              onChange={handleSearch}
+              fullWidth
+            ></TextField>
+            <Button onClick={handleDeleteRows}>
+              <SvgIcon
+                sx={{ height: 35, width: 35 }}
+                color="action"
+                component={DeleteIcon}
+              ></SvgIcon>
+            </Button>
+          </Stack>
+          <DataTable
+            rows={filteredUsers}
+            columns={columns}
+            loading={!users.length}
+            sx={userTableStyles}
+            checkboxSelection
+            onRowSelectionModelChange={handleSelectionModelChange}
+            selectionModel={selectedRows}
+          />
+        </React.Fragment>
+      )}
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   TextField,
@@ -9,17 +9,40 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const UserForm = ({ id }) => {
+const UserForm = ({ row, boolean }) => {
   const [fullName, setFullName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [selectedAvatar, setSelectedAvatar] = useState("");
-
+  const [editBool, setEditBool] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setEditBool(boolean);
+  }, [boolean]);
   const handleAvatarClick = (src) => {
     setSelectedAvatar(src);
+  };
+
+  const editUser = () => {
+    const template = {
+      Avatar: selectedAvatar,
+      Name: fullName,
+      UserName: userName,
+      Email: email,
+      Role: role,
+    };
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(template),
+    };
+    fetch(
+      `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`,
+      requestOptions
+    ).then((response) => response.json());
+    navigate("/");
   };
 
   const handleSubmit = (event) => {
@@ -38,7 +61,8 @@ const UserForm = ({ id }) => {
       },
       body: JSON.stringify(data),
     }).then((response) => response.json());
-    navigate("/NavBar");
+
+    navigate("/");
   };
 
   const handleRoleChange = (event) => {
@@ -162,9 +186,19 @@ const UserForm = ({ id }) => {
             />
           </Stack>
         </div>
-        <Button variant="contained" sx={{ marginBottom: 2 }} type="submit">
-          Create User
-        </Button>
+        {editBool ? (
+          <Button
+            variant="contained"
+            sx={{ marginBottom: 2 }}
+            onClick={editUser}
+          >
+            Edit User
+          </Button>
+        ) : (
+          <Button variant="contained" sx={{ marginBottom: 2 }} type="submit">
+            Create User
+          </Button>
+        )}
       </Stack>
     </form>
   );
