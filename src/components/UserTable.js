@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import DataTable from "./DataTable";
 import { Avatar, Button, Stack, SvgIcon, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import UserForm from "./UserForm";
+import { DataGrid } from "@mui/x-data-grid";
 
 const userTableStyles = {
   height: "450px",
@@ -14,6 +14,7 @@ const UserTable = ({ filterValue }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [editValue, setEditValue] = useState([]);
   const [editBool, setEditBool] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
 
   const filteredUsers = users.filter(
     (user) =>
@@ -43,29 +44,30 @@ const UserTable = ({ filterValue }) => {
     setUsers(updatedUsers);
   };
 
-  const [selectedRows, setSelectedRows] = useState([]);
-
   const handleDeleteRows = () => {
-    const deletePromises = selectedRows.map((row) => {
-      return fetch(
-        `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`,
-        {
-          method: "DELETE",
-        }
-      );
+    const deletePromises = selectedRows.map((selectedRow) => {
+      const userToDelete = users.find((user) => user.id === selectedRow);
+      if (userToDelete) {
+        return fetch(
+          `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${userToDelete.id}`,
+          {
+            method: "DELETE",
+          }
+        );
+      }
+      return null;
     });
 
     Promise.all(deletePromises)
       .then(() => {
-        const newUsers = users.filter((user) => !selectedRows.includes(user));
+        const newUsers = users.filter(
+          (user) => !selectedRows.includes(user.id)
+        );
         setUsers(newUsers);
         setSelectedRows([]);
+        console.log(newUsers);
       })
       .catch((error) => console.error(error));
-  };
-
-  const handleSelectionModelChange = (newSelection) => {
-    setSelectedRows(newSelection);
   };
 
   const deleteUser = (e, row) => {
@@ -162,14 +164,14 @@ const UserTable = ({ filterValue }) => {
               ></SvgIcon>
             </Button>
           </Stack>
-          <DataTable
+          <DataGrid
+            onRowSelectionModelChange={(ids) => setSelectedRows(ids)}
+            rowSelectionModel={selectedRows}
             rows={filteredUsers}
             columns={columns}
             loading={!users.length}
             sx={userTableStyles}
-            checkboxSelection
-            onRowSelectionModelChange={handleSelectionModelChange}
-            selectionModel={selectedRows}
+            checkboxSelection={true}
           />
         </React.Fragment>
       )}
