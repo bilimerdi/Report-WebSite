@@ -28,7 +28,19 @@ const UserTable = ({ filterValue }) => {
   const editUser = (e, row) => {
     setEditValue(row);
     setEditBool(true);
-    console.log(editValue);
+    const updatedUsers = users.map((user) => {
+      if (user.id === row.id) {
+        return {
+          ...user,
+          Name: row.Name,
+          UserName: row.UserName,
+          Email: row.Email,
+          Role: row.Role,
+        };
+      }
+      return user;
+    });
+    setUsers(updatedUsers);
   };
 
   const [selectedRows, setSelectedRows] = useState([]);

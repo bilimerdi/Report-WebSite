@@ -42,7 +42,7 @@ const UserForm = ({ row, boolean }) => {
       `https://645c033ca8f9e4d6e7790cfe.mockapi.io/api/Users/${row.id}`,
       requestOptions
     ).then((response) => response.json());
-    navigate("/");
+    navigate("/NavBar");
   };
 
   const handleSubmit = (event) => {
